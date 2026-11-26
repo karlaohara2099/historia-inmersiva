@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Historia Inmersiva: aplicación educativa sobre Santa Anna y la Revolución de Ayutla.">
+<title>Historia Inmersiva | México 1853–1855</title>
+<style>
+:root{--navy:#17243a;--navy2:#243753;--gold:#d7b56d;--paper:#f5f0e5;--ink:#252a31;--muted:#697386;--red:#9b3d35;--line:#e4dccb;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:#eee9df;color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+header{background:linear-gradient(120deg,#142238,#304661);color:white;padding:28px max(22px,calc((100% - 1120px)/2));border-bottom:5px solid var(--gold)}
+.brand{display:flex;align-items:center;gap:14px}.seal{width:52px;height:52px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:25px}
+h1{font-size:clamp(1.6rem,4vw,2.5rem);margin:0;color:#f3dfb1;letter-spacing:.05em}header p{margin:4px 0 0;color:#dbe2eb;font-family:Arial,sans-serif;font-size:.9rem}
+nav{background:#101c2d;display:flex;gap:7px;overflow-x:auto;padding:12px max(15px,calc((100% - 1120px)/2));position:sticky;top:0;z-index:5}
+nav button{white-space:nowrap;border:1px solid #526078;background:transparent;color:#f4ead6;padding:9px 13px;border-radius:20px;cursor:pointer;font-size:.88rem}
+nav button.active,nav button:hover{background:var(--gold);color:#17243a;border-color:var(--gold)}
+main{max-width:1120px;margin:26px auto;padding:0 18px 40px}.panel{display:none;background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:clamp(18px,4vw,34px);box-shadow:0 8px 28px #1c263015}.panel.active{display:block}
+.kicker{font:700 .75rem Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+h2{font-size:clamp(1.5rem,3vw,2.1rem);color:var(--navy);margin:.2em 0 .55em}h3{color:var(--navy2);margin:1em 0 .3em}
+p{margin:.5em 0 1em}.lead{font-size:1.12rem;color:#465064}
+.hero{min-height:260px;border-radius:12px;padding:30px;display:flex;align-items:end;background:linear-gradient(90deg,#142238e8,#14223855),url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1500&q=80') center/cover;color:white;margin:18px 0}
+.hero h2{color:#f4dfb2;max-width:650px;font-size:clamp(1.8rem,4vw,3rem)}.hero p{max-width:650px;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.card{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:17px}
+.card .symbol{font-size:1.7rem}.card h3{margin:.25em 0}
+button.action,.choice{background:var(--navy);color:white;border:0;border-radius:8px;padding:11px 16px;cursor:pointer;font:600 .92rem Arial,sans-serif}
+button.action:hover,.choice:hover{background:#344d70}.choice{display:block;width:100%;text-align:left;margin:8px 0;background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:400}
+.choice:hover{background:#f0e7d5;color:var(--navy)}
+select,input,textarea{width:100%;padding:11px;border:1px solid #cfc6b5;border-radius:8px;background:#fffdf8;font:1rem Arial,sans-serif;margin:6px 0 12px}
+.chat{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.bubble{padding:12px 14px;border-radius:12px;margin:8px 0;max-width:95%}.bot{background:#e8e2d5}.user{background:#dce7f1;margin-left:auto}
+.note{border-left:4px solid var(--gold);padding:10px 14px;background:#eee7d8;margin:15px 0}
+.timeline{border-left:3px solid var(--gold);margin:20px 0 20px 8px;padding-left:22px}.event{position:relative;padding:0 0 18px}.event:before{content:"";position:absolute;left:-30px;top:6px;width:12px;height:12px;background:var(--red);border:3px solid var(--paper);border-radius:50%}.year{font:bold .85rem Arial,sans-serif;color:var(--red)}
+footer{text-align:center;background:var(--navy);color:#dbe2eb;padding:22px;font: .85rem Arial,sans-serif}small{color:var(--muted)}
+@media(max-width:600px){header{padding:22px 17px}.seal{width:44px;height:44px}nav{position:relative}.hero{padding:20px;min-height:240px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="seal">✦</div><div><h1>HISTORIA INMERSIVA</h1><p>Laboratorio digital de Historia · México, 1853–1855</p></div></div>
+</header>
+<nav id="menu">
+ <button class="active" data-page="inicio">Inicio</button><button data-page="personajes">Personajes</button><button data-page="escenarios">Escenarios</button><button data-page="documentos">Documentos</button><button data-page="misterio">Misterio histórico</button><button data-page="linea">Línea del tiempo</button><button data-page="ia">Pregunta a la IA</button>
+</nav>
+<main>
+<section class="panel active" id="inicio">
+ <div class="kicker">Una experiencia para investigar el pasado</div>
+ <div class="hero"><div><h2>El poder, la rebelión y el cambio político</h2><p>Viaja al México del siglo XIX, conoce la dictadura de Antonio López de Santa Anna e investiga la Revolución de Ayutla de 1854.</p><button class="action" onclick="showPage('personajes')">Comenzar exploración →</button></div></div>
+ <h2>Tu misión como investigador</h2><p class="lead">No memorices solamente fechas: interpreta fuentes, compara perspectivas y explica por qué ocurrieron los acontecimientos.</p>
+ <div class="grid">
+  <div class="card"><div class="symbol">🗣️</div><h3>Entrevista personajes</h3><p>Conversa con recreaciones educativas de figuras históricas.</p></div>
+  <div class="card"><div class="symbol">🗺️</div><h3>Explora escenarios</h3><p>Ubica los espacios donde se desarrollaron los acontecimientos.</p></div>
+  <div class="card"><div class="symbol">📜</div><h3>Analiza documentos</h3><p>Identifica autoría, contexto, propósito y contenido de las fuentes.</p></div>
+  <div class="card"><div class="symbol">🔎</div><h3>Resuelve misterios</h3><p>Relaciona evidencias para explicar la caída de Santa Anna.</p></div>
+  <div class="card"><div class="symbol">⏳</div><h3>Reconstruye procesos</h3><p>Ordena los acontecimientos y distingue sus consecuencias.</p></div>
+  <div class="card"><div class="symbol">🤖</div><h3>Consulta la IA histórica</h3><p>Pregunta por las causas, consecuencias y conexiones históricas.</p></div>
+ </div>
+ <div class="note"><b>Pregunta central:</b> ¿Cómo contribuyó la Revolución de Ayutla a terminar con el gobierno de Santa Anna y abrir paso a las transformaciones liberales?</div>
+</section>
+
+<section class="panel" id="personajes">
+ <div class="kicker">Módulo 01 · Entrevistas históricas</div><h2>Habla con personajes históricos</h2>
+ <p>Selecciona a una figura para consultar una entrevista simulada. Las respuestas son recreaciones educativas, no citas textuales.</p>
+ <label for="personaje">Selecciona un personaje</label><select id="personaje" onchange="renderPerson()"><option value="santa">Antonio López de Santa Anna</option><option value="alvarez">Juan Álvarez</option><option value="comonfort">Ignacio Comonfort</option></select>
+ <div class="grid"><div class="card"><div class="symbol">🎙️</div><h3 id="personName">Antonio López de Santa Anna</h3><p id="personBio">Presidente de México durante el régimen de 1853–1855.</p></div><div class="card"><h3>Pregunta para la entrevista</h3><select id="personQuestion" onchange="answerPerson()"></select><div class="chat" id="personAnswer">Selecciona una pregunta para iniciar la conversación.</div></div></div>
+</section>
+
+<section class="panel" id="escenarios">
+ <div class="kicker">Módulo 02 · Geografía histórica</div><h2>Visita escenarios históricos</h2><p>Explora los espacios vinculados con el gobierno de Santa Anna y la rebelión de Ayutla.</p>
+ <div class="grid">
+  <div class="card"><div class="symbol">🏛️</div><h3>Ciudad de México</h3><p>Centro del poder político y administrativo. Desde la capital se tomaban las decisiones del gobierno y se organizaba la autoridad del régimen.</p><small>Pregunta de observación: ¿Cómo influía la centralización del poder en la vida política?</small></div>
+  <div class="card"><div class="symbol">⛰️</div><h3>Guerrero</h3><p>Región donde Juan Álvarez y otros opositores organizaron la resistencia contra el gobierno de Santa Anna.</p><small>Pregunta de observación: ¿Por qué fue importante la organización regional?</small></div>
+  <div class="card"><div class="symbol">⚓</div><h3>Acapulco</h3><p>Puerto estratégico y escenario de enfrentamientos durante la rebelión. Su ubicación tuvo importancia para el desarrollo del conflicto.</p><small>Pregunta de observación: ¿Qué ventajas podía ofrecer su posición geográfica?</small></div>
+ </div>
+ <div class="note">Actividad: señala en un mapa de México la Ciudad de México, Guerrero y Acapulco. Explica qué función tuvo cada espacio en el proceso.</div>
+</section>
+
+<section class="panel" id="documentos">
+ <div class="kicker">Módulo 03 · Taller de fuentes</div><h2>Analiza un documento antiguo</h2>
+ <h3>Plan de Ayutla · 1 de marzo de 1854</h3>
+ <div class="note"><b>Contenido adaptado:</b> El Plan de Ayutla desconocía el gobierno de Santa Anna y proponía establecer un nuevo orden político mediante la convocatoria a un Congreso Constituyente.</div>
+ <p>Examina la ficha y responde las preguntas de análisis:</p>
+ <div class="grid"><div class="card"><b>Tipo de fuente</b><p>Documento político de carácter programático.</p></div><div class="card"><b>Contexto</b><p>Crisis política, autoritarismo y oposición al gobierno de Santa Anna.</p></div><div class="card"><b>Propósito</b><p>Articular la oposición y proponer una reorganización del poder político.</p></div><div class="card"><b>Importancia</b><p>Expresa los objetivos del movimiento que contribuyó a terminar con el régimen.</p></div></div>
+ <label for="docQ">¿Por qué es importante analizar el Plan de Ayutla como fuente histórica?</label><textarea id="docQ" rows="3" placeholder="Escribe tu interpretación..."></textarea><button class="action" onclick="document.getElementById('docFeedback').textContent='¡Análisis guardado en esta sesión! Recuerda fundamentar tu respuesta en el contexto, el propósito y las propuestas del documento.'">Revisar mi reflexión</button><p id="docFeedback" aria-live="polite"></p>
+ <small>Nota: el texto presentado es una paráfrasis educativa, no una transcripción literal del documento original.</small>
+</section>
+
+<section class="panel" id="misterio">
+ <div class="kicker">Módulo 04 · Investigación por evidencias</div><h2>El misterio: ¿por qué cayó Santa Anna?</h2><p>Lee los expedientes y elige la explicación que mejor integra las evidencias.</p>
+ <div class="grid"><div class="card"><h3>Expediente 1 · Política</h3><p>Concentración del poder y restricciones a la oposición.</p></div><div class="card"><h3>Expediente 2 · Economía</h3><p>Medidas fiscales y necesidades económicas que generaron descontento.</p></div><div class="card"><h3>Expediente 3 · Oposición</h3><p>Dirigentes liberales promovieron el Plan de Ayutla y la rebelión.</p></div><div class="card"><h3>Expediente 4 · Conflicto</h3><p>La resistencia se extendió y debilitó la capacidad del régimen para mantenerse.</p></div></div>
+ <h3>Selecciona tu conclusión</h3>
+ <button class="choice" onclick="mystery(0)">A. Santa Anna cayó únicamente porque perdió una batalla.</button>
+ <button class="choice" onclick="mystery(1)">B. La combinación del autoritarismo, el descontento económico, la oposición política y la rebelión debilitó al régimen.</button>
+ <button class="choice" onclick="mystery(2)">C. La revolución fue exclusivamente un conflicto entre dos militares.</button>
+ <div class="chat" id="mysteryResult" aria-live="polite">Tu conclusión aparecerá aquí.</div>
+</section>
+
+<section class="panel" id="linea">
+ <div class="kicker">Módulo 05 · Reconstrucción histórica</div><h2>Línea del tiempo: 1853–1855</h2>
+ <div class="timeline">
+  <div class="event"><div class="year">1853</div><b>Regreso de Santa Anna</b><p>Santa Anna vuelve al poder y establece un gobierno autoritario.</p></div>
+  <div class="event"><div class="year">1 de marzo de 1854</div><b>Proclamación del Plan de Ayutla</b><p>Se desconoce el gobierno de Santa Anna y se plantea reorganizar el poder político.</p></div>
+  <div class="event"><div class="year">1854–1855</div><b>Desarrollo de la rebelión</b><p>La resistencia se extiende y se producen enfrentamientos entre las fuerzas revolucionarias y las del gobierno.</p></div>
+  <div class="event"><div class="year">Agosto de 1855</div><b>Salida de Santa Anna</b><p>Santa Anna abandona el poder y sale de México.</p></div>
+  <div class="event"><div class="year">1855</div><b>Gobierno provisional</b><p>Juan Álvarez encabeza el nuevo gobierno y comienza una etapa de reorganización política.</p></div>
+ </div>
+ <h3>Consecuencias: corto y largo plazo</h3><div class="grid"><div class="card"><h3>Corto plazo</h3><ul><li>Caída del gobierno de Santa Anna.</li><li>Gobierno provisional de Juan Álvarez.</li><li>Ascenso de dirigentes liberales.</li></ul></div><div class="card"><h3>Largo plazo</h3><ul><li>Impulso a las reformas liberales.</li><li>Constitución de 1857.</li><li>Transformación de las instituciones y conflictos de la Guerra de Reforma.</li></ul></div></div>
+</section>
+
+<section class="panel" id="ia">
+ <div class="kicker">Módulo 06 · Asistente de aprendizaje</div><h2>Pregunta a la IA histórica</h2><p>Selecciona una pregunta para recibir una explicación. Este asistente funciona con respuestas educativas integradas en la aplicación; no requiere conexión a una API externa.</p>
+ <label for="iaQuestion">Elige una pregunta</label><select id="iaQuestion"><option value="causas">¿Cuáles fueron las causas de la dictadura de Santa Anna?</option><option value="corto">¿Qué consecuencias tuvo Ayutla a corto plazo?</option><option value="largo">¿Qué consecuencias tuvo Ayutla a largo plazo?</option><option value="reforma">¿Qué relación tiene Ayutla con la Reforma?</option><option value="liberal">¿Por qué fue una revolución liberal?</option><option value="contexto">¿Cuál era el contexto de México en 1853?</option></select>
+ <button class="action" onclick="askAI()">Enviar pregunta</button><div class="chat" id="iaAnswer" aria-live="polite"><div class="bubble bot">¡Hola! Soy HistoriAI. Selecciona una pregunta y te ayudaré a comprender este proceso histórico.</div></div>
+ <div class="note"><b>Recuerda:</b> utiliza las respuestas como punto de partida y contrástalas con documentos y bibliografía académica.</div>
+</section>
+</main>
+<footer>HISTORIA INMERSIVA · Aplicación educativa de Historia · México, 1853–1855<br>Aprender historia es investigar, interpretar y comprender el pasado.</footer>
+<script>
+const pages=[...document.querySelectorAll('.panel')];
+function showPage(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+const people={
+ santa:{name:'Antonio López de Santa Anna',bio:'Presidente de México durante el régimen de 1853–1855.',qs:['¿Por qué regresó al poder?','¿Cómo concentró el poder?','¿Qué medidas económicas tomó?','¿Por qué perdió apoyo?'],a:['Su regreso ocurrió en un contexto de inestabilidad política. Sus partidarios presentaron un gobierno fuerte como una vía para recuperar el orden, aunque el régimen terminó concentrando la autoridad.','El gobierno fortaleció el poder del Ejecutivo, redujo espacios de participación y restringió a sus opositores.','Se aplicaron medidas fiscales para obtener recursos para la administración y el ejército. Algunas generaron descontento entre distintos sectores.','El autoritarismo, las medidas fiscales, la oposición política y la resistencia armada contribuyeron al desgaste del régimen.']},
+ alvarez:{name:'Juan Álvarez',bio:'Militar y dirigente liberal; uno de los principales impulsores de la Revolución de Ayutla.',qs:['¿Por qué se opuso a Santa Anna?','¿Qué proponía el Plan de Ayutla?','¿Quiénes apoyaron el movimiento?','¿Qué ocurrió tras el triunfo?'],a:['La oposición se relacionaba con el autoritarismo, la falta de libertades y la necesidad de transformar el sistema político.','El Plan de Ayutla, proclamado el 1 de marzo de 1854, desconocía a Santa Anna y proponía convocar a un Congreso Constituyente.','Participaron opositores liberales, dirigentes regionales, militares y grupos descontentos con el régimen.','Tras la salida de Santa Anna en 1855, Juan Álvarez encabezó un gobierno provisional y se abrió paso a un proceso de reformas.']},
+ comonfort:{name:'Ignacio Comonfort',bio:'Político y militar liberal que participó en el movimiento de Ayutla y en la reorganización posterior.',qs:['¿Por qué era necesario un nuevo gobierno?','¿Qué papel tuvo después de Ayutla?','¿Qué reformas comenzaron?'],a:['El movimiento buscaba sustituir el régimen de Santa Anna y establecer nuevas bases institucionales.','Comonfort participó en el proceso político que siguió al triunfo revolucionario y posteriormente ocupó la presidencia.','Se impulsó un proceso de reformas liberales que buscó transformar las instituciones y limitar privilegios corporativos.']}
+};
+function renderPerson(){let p=people[document.getElementById('personaje').value];document.getElementById('personName').textContent=p.name;document.getElementById('personBio').textContent=p.bio;let s=document.getElementById('personQuestion');s.innerHTML='';p.qs.forEach((q,i)=>{let o=document.createElement('option');o.value=i;o.textContent=q;s.appendChild(o)});answerPerson()}
+function answerPerson(){let p=people[document.getElementById('personaje').value],i=Number(document.getElementById('personQuestion').value);document.getElementById('personAnswer').innerHTML='<div class="bubble user">'+p.qs[i]+'</div><div class="bubble bot"><b>Respuesta simulada:</b><br>'+p.a[i]+'</div><small>Recreación educativa; no es una cita literal.</small>'}
+function mystery(n){let r=document.getElementById('mysteryResult');if(n===1){r.innerHTML='<b style="color:#276749">¡Correcto! Has resuelto el caso.</b><p>La caída de Santa Anna se explica por la interacción de factores políticos, económicos y militares. La Revolución de Ayutla articuló parte del descontento en un movimiento que buscó transformar el gobierno.</p>'}else{r.innerHTML='<b>Vuelve a revisar las evidencias.</b><p>Una explicación histórica sólida debe relacionar los distintos factores y no reducir el proceso a una sola causa.</p>'}}
+const answers={
+ causas:'El retorno de Santa Anna en 1853 estuvo relacionado con la crisis política, la inestabilidad institucional, los conflictos entre grupos políticos y la búsqueda de un gobierno fuerte. Su régimen concentró el poder, restringió la oposición y aplicó medidas económicas que generaron descontento.',
+ corto:'La consecuencia inmediata más importante fue la salida de Santa Anna del poder en 1855. El triunfo permitió establecer un gobierno provisional encabezado inicialmente por Juan Álvarez y abrió el camino a una reorganización política.',
+ largo:'La Revolución de Ayutla contribuyó al fortalecimiento del liberalismo mexicano, al inicio de las reformas liberales y a la elaboración de la Constitución de 1857. También forma parte de los antecedentes de los conflictos entre liberales y conservadores que desembocaron en la Guerra de Reforma.',
+ reforma:'Ayutla permitió el ascenso de dirigentes liberales que impulsaron transformaciones políticas e institucionales. El proceso se relaciona con las Leyes de Reforma y la Constitución de 1857, que modificaron las relaciones entre el Estado, la Iglesia y otras corporaciones.',
+ liberal:'Fue un movimiento liberal porque reunió a sectores que buscaban terminar con el gobierno autoritario, reorganizar el sistema político y establecer un gobierno con bases constitucionales.',
+ contexto:'En 1853 México enfrentaba inestabilidad política, dificultades económicas y conflictos entre proyectos políticos distintos. En ese contexto, Santa Anna regresó al poder y estableció un régimen centralizado y autoritario que generó oposición.'
+};
+function askAI(){let k=document.getElementById('iaQuestion').value,q=document.getElementById('iaQuestion').selectedOptions[0].text;document.getElementById('iaAnswer').innerHTML='<div class="bubble user">'+q+'</div><div class="bubble bot"><b>HistoriAI responde:</b><br>'+answers[k]+'</div>'}
+renderPerson();
+</script>
+</body>
+</html>
